@@ -18,13 +18,11 @@ import java.util.List;
 public class ListarPedidoController {
 
     private final PedidoRepositoryInterface pedidoRepositoryInterface;
-//    private final ClienteRepositoryInterface clienteRepositoryInterface;
-//    private final ProdutoRepositoryInterface produtoRepositoryInterface;
 
     @GetMapping
     @Operation(tags = "Pedidos")
     public ResponseEntity<List<Object>> listar() {
-        PedidoController pedidoController = new PedidoController(this.pedidoRepositoryInterface/*, this.clienteRepositoryInterface, this.produtoRepositoryInterface*/);
+        PedidoController pedidoController = new PedidoController(this.pedidoRepositoryInterface);
         return new ResponseEntity<>(pedidoController.listar(), HttpStatus.OK);
     }
 

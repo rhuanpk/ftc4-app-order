@@ -13,28 +13,15 @@ import java.util.UUID;
 public class CriarPedido {
 
     private final PedidoRepositoryInterface pedidoRepository;
-//    private final ClienteRepositoryInterface clienteRepository;
-//    private final ProdutoRepositoryInterface produtoRepository;
 
-    public CriarPedido(PedidoRepositoryInterface pedidoRepository/*, ClienteRepositoryInterface clienteRepository, ProdutoRepositoryInterface produtoRepository*/) {
+    public CriarPedido(PedidoRepositoryInterface pedidoRepository) {
         this.pedidoRepository = pedidoRepository;
-//        this.clienteRepository = clienteRepository;
-//        this.produtoRepository = produtoRepository;
     }
 
     public Pedido execute(CriarPedidoInput input) {
-//        Cliente cliente = this.clienteRepository.getClienteById(input.cliente_id());
-//        if (cliente == null) {
-//            throw new RegraDeNegocioException("Cliente não encontrado");
-//        }
         Pedido pedido = new Pedido(UUID.randomUUID(), input.nomeCliente(), StatusPedido.RECEBIDO, StatusPagamento.AGUARDANDO, Instant.now());
         for (CriarPedidoItemInput inputItem : input.items()) {
             pedido.addItem(new PedidoItem(inputItem.produtoNome(), inputItem.valor(), inputItem.quantidade()));
-//            Produto produto = this.produtoRepository.getById(inputItem.item_id());
-//            if (produto == null) {
-//                throw new RegraDeNegocioException("Item do pedido não encontrado");
-//            }
-//            pedido.addItem(new PedidoItem(inputItem.item_id(), produto.getPreco(), inputItem.quantidade()));
         }
         this.check(pedido);
         this.pedidoRepository.criarPedido(pedido);

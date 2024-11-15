@@ -17,13 +17,11 @@ import java.util.UUID;
 public class AtualizarStatusPedidoController {
 
     private final PedidoRepositoryInterface pedidoRepositoryInterface;
-//    private final ClienteRepositoryInterface clienteRepositoryInterface;
-//    private final ProdutoRepositoryInterface produtoRepositoryInterface;
 
     @PutMapping("/{id}")
     @Operation(tags = "Pedidos")
     public ResponseEntity<Object> atualizarStatus(@PathVariable("id") UUID id, @RequestBody AtualizarStatusPedidoRequest request) {
-        PedidoController pedidoController = new PedidoController(this.pedidoRepositoryInterface/*, this.clienteRepositoryInterface, this.produtoRepositoryInterface*/);
+        PedidoController pedidoController = new PedidoController(this.pedidoRepositoryInterface);
         var pedido = pedidoController.atualizarStatusPedido(id, request.statusPedido());
         return new ResponseEntity<>(pedido, HttpStatus.OK);
     }

@@ -24,13 +24,11 @@ import java.util.List;
 public class CreatePedidoController {
 
     private final PedidoRepositoryInterface pedidoRepositoryInterace;
-//    private final ClienteRepositoryInterface clienteRepositoryInterface;
-//    private final ProdutoRepositoryInterface produtoRepositoryInterface;
 
     @PostMapping
     @Operation(tags = "Pedidos")
     public ResponseEntity<Object> create(@RequestBody PedidoCreateRequest request) {
-        PedidoController pedidoController = new PedidoController(this.pedidoRepositoryInterace/*, this.clienteRepositoryInterface, this.produtoRepositoryInterface*/);
+        PedidoController pedidoController = new PedidoController(this.pedidoRepositoryInterace);
         List<CriarPedidoItemInput> inputItens = new ArrayList<>();
         for (PedidoCreateItemRequest itemPedido : request.items()) {
             inputItens.add(new CriarPedidoItemInput(itemPedido.produtoNome(), itemPedido.valor(), itemPedido.quantidade()));

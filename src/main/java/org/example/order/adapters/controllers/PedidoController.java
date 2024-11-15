@@ -15,13 +15,9 @@ import java.util.UUID;
 public class PedidoController {
 
     private final PedidoRepositoryInterface pedidoRepository;
-//    private final ClienteRepositoryInterface clienteRepository;
-//    private final ProdutoRepositoryInterface produtoRepository;
 
-    public PedidoController(PedidoRepositoryInterface pedidoRepository/*, ClienteRepositoryInterface clienteRepository, ProdutoRepositoryInterface produtoRepository*/) {
+    public PedidoController(PedidoRepositoryInterface pedidoRepository) {
         this.pedidoRepository = pedidoRepository;
-//        this.clienteRepository = clienteRepository;
-//        this.produtoRepository = produtoRepository;
     }
 
     public List<Object> listar() {
@@ -37,7 +33,7 @@ public class PedidoController {
     }
 
     public Object criarPedido(CriarPedidoInput input) {
-        CriarPedido criarPedido = new CriarPedido(this.pedidoRepository/*, this.clienteRepository, this.produtoRepository*/);
+        CriarPedido criarPedido = new CriarPedido(this.pedidoRepository);
         return PedidoPresenter.toObject(criarPedido.execute(input));
     }
 

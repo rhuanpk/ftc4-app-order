@@ -30,9 +30,6 @@ public class PedidoGateway implements PedidoRepositoryInterface {
     @Override
     public Pedido criarPedido(Pedido pedido) {
 
-//        ClienteEntity clienteEntity = new ClienteEntity();
-//        clienteEntity.setId(pedido.getClienteId());
-
         PedidoEntity pedidoEntity = new PedidoEntity();
         pedidoEntity.setId(pedido.getId());
         pedidoEntity.setStatusPedido(pedido.getStatusPedido());
@@ -42,9 +39,6 @@ public class PedidoGateway implements PedidoRepositoryInterface {
         this.pedidoRepository.save(pedidoEntity);
 
         for (PedidoItem pedidoItem : pedido.getItems()) {
-//            ProdutoEntity produtoEntity = new ProdutoEntity();
-//            produtoEntity.setId(pedidoItem.getItemId());
-
             PedidoItemEntity pedidoItemEntity = new PedidoItemEntity();
             pedidoItemEntity.setQuantidade(pedidoItem.getQuantidade());
             pedidoItemEntity.setPedido(pedidoEntity);
@@ -84,15 +78,8 @@ public class PedidoGateway implements PedidoRepositoryInterface {
         pedidoEntity.setPreco(pedido.getValor());
         pedidoEntity.setCliente(pedido.getClienteNome());
 
-//        ClienteEntity clienteEntity = new ClienteEntity();
-//        clienteEntity.setId(pedido.getClienteId());
-//        pedidoEntity.setCliente(clienteEntity);
-
         List<PedidoItemEntity> pedidoItemEntities = new ArrayList<>();
         for (PedidoItem pedidoItem : pedido.getItems()) {
-//            ProdutoEntity produtoEntity = new ProdutoEntity();
-//            produtoEntity.setId(pedidoItem.getItemId());
-
             PedidoItemEntity pedidoItemEntity = new PedidoItemEntity();
             pedidoItemEntity.setQuantidade(pedidoItem.getQuantidade());
             pedidoItemEntity.setPedido(pedidoEntity);

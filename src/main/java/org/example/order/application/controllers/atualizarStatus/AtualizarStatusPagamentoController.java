@@ -18,13 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AtualizarStatusPagamentoController {
 
     private final PedidoRepositoryInterface pedidoRepositoryInterace;
-//    private final ClienteRepositoryInterface clienteRepositoryInterface;
-//    private final ProdutoRepositoryInterface produtoRepositoryInterface;
 
     @PostMapping
     @Operation(tags = "Pagamentos", summary = "Webhook de atualização do status do pagamento")
     public ResponseEntity<Object> atualizarStatusPagamento(@RequestBody AtualizarStatusPagamentoRequest request) {
-        PedidoController pedidoController = new PedidoController(this.pedidoRepositoryInterace/*, this.clienteRepositoryInterface, this.produtoRepositoryInterface*/);
+        PedidoController pedidoController = new PedidoController(this.pedidoRepositoryInterace);
         var pedido = pedidoController.atualizarStatusPagamento(request.id(), request.statusPagamento());
         return new ResponseEntity<>(pedido, HttpStatus.OK);
     }

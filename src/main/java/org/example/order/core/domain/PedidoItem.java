@@ -1,22 +1,21 @@
 package org.example.order.core.domain;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 public class PedidoItem {
 
-    private UUID itemId;
+    private String nomeProduto;
     private BigDecimal valor;
     private int quantidade;
 
-    public PedidoItem(UUID itemId, BigDecimal valor, int quantidade) {
-        this.itemId = itemId;
+    public PedidoItem(String nomeProduto, BigDecimal valor, int quantidade) {
+        this.nomeProduto = nomeProduto;
         this.valor = valor;
         this.quantidade = quantidade;
     }
 
-    public UUID getItemId() {
-        return this.itemId;
+    public String getNomeProduto() {
+        return this.nomeProduto;
     }
 
     public BigDecimal getValor() {

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
@@ -13,10 +14,11 @@ import java.util.UUID;
 @Entity
 @Table(name = "TB_PEDIDO_ITEM")
 public class PedidoItemEntity {
-
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
+
+    private BigDecimal preco;
 
     private int quantidade;
 
@@ -24,7 +26,5 @@ public class PedidoItemEntity {
     @JoinColumn(name = "pedido_id")
     private PedidoEntity pedido;
 
-    @ManyToOne
-    @JoinColumn(name = "produto_id")
-    private ProdutoEntity produto;
+    private String produto;
 }

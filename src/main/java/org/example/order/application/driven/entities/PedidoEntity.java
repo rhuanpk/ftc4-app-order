@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.order.core.domain.enums.StatusPagamento;
+import org.example.order.core.domain.enums.StatusPedido;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -29,8 +31,7 @@ public class PedidoEntity {
     @Enumerated(EnumType.STRING)
     private StatusPagamento statusPagamento;
 
-    @ManyToOne
-    private ClienteEntity cliente;
+    private String cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<PedidoItemEntity> items;

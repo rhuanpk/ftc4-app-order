@@ -1,5 +1,8 @@
 package org.example.order.core.domain;
 
+import org.example.order.core.domain.enums.StatusPagamento;
+import org.example.order.core.domain.enums.StatusPedido;
+
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -9,15 +12,15 @@ import java.util.UUID;
 public class Pedido {
 
     private UUID id;
-    private UUID clienteId;
+    private String clienteNome;
     private StatusPedido statusPedido;
     private StatusPagamento statusPagamento;
     private Instant dataCriacao;
     private List<PedidoItem> items;
 
-    public Pedido(UUID id, UUID clienteId, StatusPedido statusPedido, StatusPagamento statusPagamento, Instant dataCriacao) {
+    public Pedido(UUID id, String clienteNome, StatusPedido statusPedido, StatusPagamento statusPagamento, Instant dataCriacao) {
         this.id = id;
-        this.clienteId = clienteId;
+        this.clienteNome = clienteNome;
         this.statusPedido = statusPedido;
         this.statusPagamento = statusPagamento;
         this.dataCriacao = dataCriacao;
@@ -28,8 +31,8 @@ public class Pedido {
         return this.id;
     }
 
-    public UUID getClienteId() {
-        return this.clienteId;
+    public String getClienteNome() {
+        return this.clienteNome;
     }
 
     public StatusPedido getStatusPedido() {

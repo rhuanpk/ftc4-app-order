@@ -2,6 +2,7 @@ package org.example.order.core.applications.repositories;
 
 import org.example.order.core.domain.Pedido;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface PedidoRepositoryInterface {
@@ -10,8 +11,8 @@ public interface PedidoRepositoryInterface {
 
 //    public List<Pedido> listarPorStatus(StatusPedido statusPedido);
 //
-//    public List<Pedido> listar();
-//
+    public List<Pedido> listar();
+
     public Pedido getById(UUID id);
 
     public Pedido atualizarStatus(Pedido pedido);

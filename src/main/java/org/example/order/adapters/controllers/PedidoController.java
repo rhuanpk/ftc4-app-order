@@ -4,11 +4,14 @@ import org.example.order.adapters.presenters.PedidoPresenter;
 import org.example.order.core.applications.repositories.PedidoRepositoryInterface;
 import org.example.order.core.applications.usecases.AtualizarStatusPagamento;
 import org.example.order.core.applications.usecases.AtualizarStatusPedido;
+import org.example.order.core.applications.usecases.GetPedidos;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedido;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedidoInput;
+import org.example.order.core.domain.Pedido;
 import org.example.order.core.domain.enums.StatusPagamento;
 import org.example.order.core.domain.enums.StatusPedido;
 
+import java.util.List;
 import java.util.UUID;
 
 public class PedidoController {
@@ -23,11 +26,11 @@ public class PedidoController {
 //        this.produtoRepository = produtoRepository;
     }
 
-//    public List<Object> listar() {
-//        GetPedidos getPedidos = new GetPedidos(this.pedidoRepository);
-//        List<Pedido> pedidos = getPedidos.execute();
-//        return PedidoPresenter.toList(pedidos);
-//    }
+    public List<Object> listar() {
+        GetPedidos getPedidos = new GetPedidos(this.pedidoRepository);
+        List<Pedido> pedidos = getPedidos.execute();
+        return PedidoPresenter.toList(pedidos);
+    }
 
 //    public List<Object> listarPorStatus(StatusPedido statusPedido) {
 //        GetPedidosByStatus getPedidosByStatus = new GetPedidosByStatus(this.pedidoRepository);

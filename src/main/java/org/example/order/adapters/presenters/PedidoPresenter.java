@@ -30,13 +30,13 @@ public class PedidoPresenter {
         return presenter;
     }
 
-//    public static List<Object> toList(List<Pedido> pedidos) {
-//        List<Object> presenters = new ArrayList<>();
-//        for (Pedido pedido : pedidos) {
-//            presenters.add(PedidoPresenter.toObject(pedido));
-//        }
-//        return presenters;
-//    }
+    public static List<Object> toList(List<Pedido> pedidos) {
+        List<Object> presenters = new ArrayList<>();
+        for (Pedido pedido : pedidos) {
+            presenters.add(PedidoPresenter.toObject(pedido));
+        }
+        return presenters;
+    }
 
     public static Object toObjectStatusPedido(Pedido pedido) {
         Map<String, Object> presenter = new HashMap<>();

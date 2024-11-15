@@ -60,11 +60,11 @@ public class PedidoGateway implements PedidoRepositoryInterface {
 //        return this.listaDtoToEntidade(this.pedidoRepository.listarPorStatus(statusPedido));
 //    }
 //
-//    @Override
-//    public List<Pedido> listar() {
-//        return this.listaDtoToEntidade(this.pedidoRepository.listar());
-//    }
-//
+    @Override
+    public List<Pedido> listar() {
+        return this.listaDtoToEntidade(this.pedidoRepository.listar());
+    }
+
     @Override
     public Pedido getById(UUID id) {
         Optional<PedidoEntity> entity = this.pedidoRepository.findById(id);

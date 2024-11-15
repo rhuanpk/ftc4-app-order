@@ -1,10 +1,10 @@
-package org.example.order.application.controllers;
+package org.example.order.application.controllers.create;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.example.order.adapters.controllers.PedidoController;
-import org.example.order.application.controllers.requests.PedidoCreateItemRequest;
-import org.example.order.application.controllers.requests.PedidoCreateRequest;
+import org.example.order.application.controllers.create.requests.PedidoCreateItemRequest;
+import org.example.order.application.controllers.create.requests.PedidoCreateRequest;
 import org.example.order.core.applications.repositories.PedidoRepositoryInterface;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedidoInput;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedidoItemInput;

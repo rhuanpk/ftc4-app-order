@@ -2,8 +2,12 @@ package org.example.order.adapters.controllers;
 
 import org.example.order.adapters.presenters.PedidoPresenter;
 import org.example.order.core.applications.repositories.PedidoRepositoryInterface;
+import org.example.order.core.applications.usecases.AtualizarStatusPagamento;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedido;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedidoInput;
+import org.example.order.core.domain.enums.StatusPagamento;
+
+import java.util.UUID;
 
 public class PedidoController {
 
@@ -44,9 +48,9 @@ public class PedidoController {
 //        return atualizarStatusPedido.execute(id, statusPedido);
 //    }
 //
-//    public Object atualizarStatusPagamento(UUID id, StatusPagamento statusPagamento) {
-//        AtualizarStatusPagamento atualizarStatusPagamento = new AtualizarStatusPagamento(this.pedidoRepository);
-//        return PedidoPresenter.toObjectStatusPedido(atualizarStatusPagamento.execute(id, statusPagamento));
-//    }
+    public Object atualizarStatusPagamento(UUID id, StatusPagamento statusPagamento) {
+        AtualizarStatusPagamento atualizarStatusPagamento = new AtualizarStatusPagamento(this.pedidoRepository);
+        return PedidoPresenter.toObjectStatusPedido(atualizarStatusPagamento.execute(id, statusPagamento));
+    }
 
 }

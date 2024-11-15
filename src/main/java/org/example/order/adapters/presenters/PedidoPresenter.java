@@ -37,12 +37,12 @@ public class PedidoPresenter {
 //        }
 //        return presenters;
 //    }
-//
-//    public static Object toObjectStatusPedido(Pedido pedido) {
-//        Map<String, Object> presenter = new HashMap<>();
-//        presenter.put("id", pedido.getId());
-//        presenter.put("pagamento_aprovado", pedido.isPago());
-//        return presenter;
-//    }
+
+    public static Object toObjectStatusPedido(Pedido pedido) {
+        Map<String, Object> presenter = new HashMap<>();
+        presenter.put("id", pedido.getId());
+        presenter.put("pagamento_aprovado", pedido.isPago());
+        return presenter;
+    }
 
 }

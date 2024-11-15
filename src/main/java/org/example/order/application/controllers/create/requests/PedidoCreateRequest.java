@@ -1,4 +1,4 @@
-package org.example.order.application.controllers.requests;
+package org.example.order.application.controllers.create.requests;
 
 import java.util.List;
 

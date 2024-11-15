@@ -5,6 +5,7 @@ import org.example.order.core.applications.repositories.PedidoRepositoryInterfac
 import org.example.order.core.applications.usecases.AtualizarStatusPagamento;
 import org.example.order.core.applications.usecases.AtualizarStatusPedido;
 import org.example.order.core.applications.usecases.GetPedidos;
+import org.example.order.core.applications.usecases.GetPedidosByStatus;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedido;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedidoInput;
 import org.example.order.core.domain.Pedido;
@@ -32,11 +33,11 @@ public class PedidoController {
         return PedidoPresenter.toList(pedidos);
     }
 
-//    public List<Object> listarPorStatus(StatusPedido statusPedido) {
-//        GetPedidosByStatus getPedidosByStatus = new GetPedidosByStatus(this.pedidoRepository);
-//        List<Pedido> pedidos = getPedidosByStatus.execute(statusPedido);
-//        return PedidoPresenter.toList(pedidos);
-//    }
+    public List<Object> listarPorStatus(StatusPedido statusPedido) {
+        GetPedidosByStatus getPedidosByStatus = new GetPedidosByStatus(this.pedidoRepository);
+        List<Pedido> pedidos = getPedidosByStatus.execute(statusPedido);
+        return PedidoPresenter.toList(pedidos);
+    }
 
     public Object criarPedido(CriarPedidoInput input) {
         CriarPedido criarPedido = new CriarPedido(this.pedidoRepository/*, this.clienteRepository, this.produtoRepository*/);

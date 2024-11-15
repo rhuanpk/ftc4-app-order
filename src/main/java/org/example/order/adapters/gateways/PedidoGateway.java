@@ -8,6 +8,7 @@ import org.example.order.application.driven.repositories.PedidoRepository;
 import org.example.order.core.applications.repositories.PedidoRepositoryInterface;
 import org.example.order.core.domain.Pedido;
 import org.example.order.core.domain.PedidoItem;
+import org.example.order.core.domain.enums.StatusPedido;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -55,11 +56,11 @@ public class PedidoGateway implements PedidoRepositoryInterface {
         return pedido;
     }
 
-//    @Override
-//    public List<Pedido> listarPorStatus(StatusPedido statusPedido) {
-//        return this.listaDtoToEntidade(this.pedidoRepository.listarPorStatus(statusPedido));
-//    }
-//
+    @Override
+    public List<Pedido> listarPorStatus(StatusPedido statusPedido) {
+        return this.listaDtoToEntidade(this.pedidoRepository.listarPorStatus(statusPedido));
+    }
+
     @Override
     public List<Pedido> listar() {
         return this.listaDtoToEntidade(this.pedidoRepository.listar());

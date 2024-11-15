@@ -3,9 +3,11 @@ package org.example.order.adapters.controllers;
 import org.example.order.adapters.presenters.PedidoPresenter;
 import org.example.order.core.applications.repositories.PedidoRepositoryInterface;
 import org.example.order.core.applications.usecases.AtualizarStatusPagamento;
+import org.example.order.core.applications.usecases.AtualizarStatusPedido;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedido;
 import org.example.order.core.applications.usecases.criarPedido.CriarPedidoInput;
 import org.example.order.core.domain.enums.StatusPagamento;
+import org.example.order.core.domain.enums.StatusPedido;
 
 import java.util.UUID;
 
@@ -42,12 +44,12 @@ public class PedidoController {
 //        GetPedido getPedido = new GetPedido(this.pedidoRepository);
 //        return PedidoPresenter.toObjectStatusPedido(getPedido.execute(id));
 //    }
-//
-//    public Object atualizarStatusPedido(UUID id, StatusPedido statusPedido) {
-//        AtualizarStatusPedido atualizarStatusPedido = new AtualizarStatusPedido(this.pedidoRepository);
-//        return atualizarStatusPedido.execute(id, statusPedido);
-//    }
-//
+
+    public Object atualizarStatusPedido(UUID id, StatusPedido statusPedido) {
+        AtualizarStatusPedido atualizarStatusPedido = new AtualizarStatusPedido(this.pedidoRepository);
+        return atualizarStatusPedido.execute(id, statusPedido);
+    }
+
     public Object atualizarStatusPagamento(UUID id, StatusPagamento statusPagamento) {
         AtualizarStatusPagamento atualizarStatusPagamento = new AtualizarStatusPagamento(this.pedidoRepository);
         return PedidoPresenter.toObjectStatusPedido(atualizarStatusPagamento.execute(id, statusPagamento));

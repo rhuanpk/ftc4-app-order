@@ -44,7 +44,7 @@ public class PedidoController {
 
     public Object atualizarStatusPedido(UUID id, StatusPedido statusPedido) {
         AtualizarStatusPedido atualizarStatusPedido = new AtualizarStatusPedido(this.pedidoRepository);
-        return atualizarStatusPedido.execute(id, statusPedido);
+        return PedidoPresenter.toObject(atualizarStatusPedido.execute(id, statusPedido));
     }
 
     public Object atualizarStatusPagamento(UUID id, StatusPagamento statusPagamento) {

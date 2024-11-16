@@ -25,8 +25,6 @@ public class CreatePedidoController {
 
     private final PedidoRepositoryInterface pedidoRepositoryInterace;
 
-    private String feito;
-
     @PostMapping
     @Operation(tags = "Pedidos")
     public ResponseEntity<Object> create(@RequestBody PedidoCreateRequest request) {

@@ -1,9 +1,8 @@
-package org.example.order.usecases;
+package org.example.order.core.usecases;
 
 import org.example.order.core.applications.exception.EntityNotFoundException;
 import org.example.order.core.applications.repositories.PedidoRepositoryInterface;
-import org.example.order.core.applications.usecases.AtualizarStatusPedido;
-import org.example.order.core.applications.usecases.GetPedido;
+import org.example.order.core.applications.usecases.AtualizarStatusPagamento;
 import org.example.order.core.domain.Pedido;
 import org.example.order.core.domain.PedidoItem;
 import org.example.order.core.domain.enums.StatusPagamento;
@@ -20,7 +19,7 @@ import static org.mockito.Mockito.*;
 import java.time.Instant;
 import java.util.UUID;
 
-class GetPedidoTest {
+class AtualizarStatusPagamentoTest {
 
     @Mock
     private PedidoRepositoryInterface pedidoRepositoryInterface;
@@ -38,27 +37,30 @@ class GetPedidoTest {
     }
 
     @Test
-    void deveAtualizarOStatusDoPedido() {
+    void deveAtualizarOStatusDoPagamentoDoPedido() {
         Pedido pedido = new Pedido(UUID.randomUUID(), "Cliente", StatusPedido.RECEBIDO, StatusPagamento.AGUARDANDO, Instant.now());
         pedido.addItem(new PedidoItem("Produto", 10.00, 1));
         pedido.addItem(new PedidoItem("Produto 2", 25.00, 1));
         when(this.pedidoRepositoryInterface.getById(any(UUID.class))).thenReturn(pedido);
+        when(this.pedidoRepositoryInterface.atualizarStatus(any(Pedido.class))).thenReturn(pedido);
 
-        GetPedido getPedido = new GetPedido(this.pedidoRepositoryInterface);
-        Pedido pedidoEncontrado = getPedido.execute(pedido.getId());
-        assertThat(pedidoEncontrado).isEqualTo(pedido);
+        AtualizarStatusPagamento atualizarStatusPagamento = new AtualizarStatusPagamento(this.pedidoRepositoryInterface);
+        Pedido pedidoAtualizado = atualizarStatusPagamento.execute(pedido.getId(), StatusPagamento.PAGO);
+        assertThat(pedidoAtualizado).isNotNull();
+        assertThat(pedidoAtualizado.getStatusPagamento()).isEqualTo(StatusPagamento.PAGO);
         verify(this.pedidoRepositoryInterface, times(1)).getById(any(UUID.class));
+        verify(this.pedidoRepositoryInterface, times(1)).atualizarStatus(any(Pedido.class));
     }
 
     @Test
-    void naoDeveRetornarUmNaoEncontrado() {
+    void naoDevePermitirMudarOStatusDePagamentoDeUmPedidoNaoEncontrado() {
         Pedido pedido = new Pedido(UUID.randomUUID(), "Cliente", StatusPedido.RECEBIDO, StatusPagamento.AGUARDANDO, Instant.now());
         pedido.addItem(new PedidoItem("Produto", 10.00, 1));
         pedido.addItem(new PedidoItem("Produto 2", 25.00, 1));
         when(this.pedidoRepositoryInterface.getById(any(UUID.class))).thenReturn(null);
 
-        GetPedido getPedido = new GetPedido(this.pedidoRepositoryInterface);
-        assertThatThrownBy(() -> getPedido.execute(pedido.getId()))
+        AtualizarStatusPagamento atualizarStatusPagamento = new AtualizarStatusPagamento(this.pedidoRepositoryInterface);
+        assertThatThrownBy(() -> atualizarStatusPagamento.execute(pedido.getId(), StatusPagamento.PAGO))
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessage("Pedido não encontrado");
         verify(this.pedidoRepositoryInterface, times(1)).getById(any(UUID.class));

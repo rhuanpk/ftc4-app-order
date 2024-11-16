@@ -1,4 +1,4 @@
-package org.example.order.usecases;
+package org.example.order.core.usecases;
 
 import org.example.order.core.applications.repositories.PedidoRepositoryInterface;
 import org.example.order.core.applications.usecases.GetPedidosByStatus;

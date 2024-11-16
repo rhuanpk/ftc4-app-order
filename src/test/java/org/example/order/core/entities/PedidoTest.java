@@ -1,4 +1,4 @@
-package org.example.order.entities;
+package org.example.order.core.entities;
 
 import org.example.order.core.domain.Pedido;
 import org.example.order.core.domain.PedidoItem;

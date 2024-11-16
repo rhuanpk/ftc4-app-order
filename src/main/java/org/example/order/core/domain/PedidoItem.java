@@ -1,16 +1,22 @@
 package org.example.order.core.domain;
 
-import java.math.BigDecimal;
+import org.example.order.core.applications.exception.RegraDeNegocioException;
 
 public class PedidoItem {
 
     private String nomeProduto;
-    private BigDecimal valor;
+    private double valor;
     private int quantidade;
 
-    public PedidoItem(String nomeProduto, BigDecimal valor, int quantidade) {
+    public PedidoItem(String nomeProduto, double valor, int quantidade) {
         this.nomeProduto = nomeProduto;
+        if (valor < 0.01) {
+            throw new RegraDeNegocioException("O valor do item deve ser maior que 0.00");
+        }
         this.valor = valor;
+        if (quantidade < 1) {
+            throw new RegraDeNegocioException("A quantidade do item deve ser maior que 0");
+        }
         this.quantidade = quantidade;
     }
 
@@ -18,7 +24,7 @@ public class PedidoItem {
         return this.nomeProduto;
     }
 
-    public BigDecimal getValor() {
+    public double getValor() {
         return this.valor;
     }
 
@@ -26,8 +32,8 @@ public class PedidoItem {
         return this.quantidade;
     }
 
-    public BigDecimal getValorItem() {
-        return this.valor.multiply(BigDecimal.valueOf(this.quantidade));
+    public double getValorItem() {
+        return this.valor * this.quantidade;
     }
 
 }

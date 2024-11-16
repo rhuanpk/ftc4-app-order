@@ -33,6 +33,9 @@ public class CriarPedido {
             throw new RegraDeNegocioException("O pedido deve contar um ou mais itens");
         }
         for (PedidoItem pedidoItem : pedido.getItems()) {
+            if (pedidoItem.getValor() < 0.01) {
+                throw new RegraDeNegocioException("O valor do item deve ser maior que 0.00");
+            }
             if (pedidoItem.getQuantidade() < 1) {
                 throw new RegraDeNegocioException("A quantidade do item deve ser maior que 0");
             }

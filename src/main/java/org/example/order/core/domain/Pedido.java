@@ -3,7 +3,6 @@ package org.example.order.core.domain;
 import org.example.order.core.domain.enums.StatusPagamento;
 import org.example.order.core.domain.enums.StatusPedido;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,10 +54,10 @@ public class Pedido {
         this.items.add(pedidoItem);
     }
 
-    public BigDecimal getValor() {
-        BigDecimal valor = BigDecimal.valueOf(0);
+    public double getValor() {
+        double valor = 0;
         for (PedidoItem pedidoItem : this.items) {
-            valor = valor.add(pedidoItem.getValorItem());
+            valor += pedidoItem.getValorItem();
         }
         return valor;
     }

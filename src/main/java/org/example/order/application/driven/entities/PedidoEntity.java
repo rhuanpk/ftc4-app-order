@@ -2,13 +2,13 @@ package org.example.order.application.driven.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.order.core.domain.enums.StatusPagamento;
 import org.example.order.core.domain.enums.StatusPedido;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
@@ -17,13 +17,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "TB_PEDIDO")
 public class PedidoEntity {
 
     @Id
     private UUID id;
 
-    private BigDecimal preco;
+    private double preco;
 
     @Enumerated(EnumType.STRING)
     private StatusPedido statusPedido;

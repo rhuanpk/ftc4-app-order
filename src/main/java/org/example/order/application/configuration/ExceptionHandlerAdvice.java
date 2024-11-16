@@ -20,7 +20,7 @@ public class ExceptionHandlerAdvice {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public  ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
         return ResponseEntity.notFound().build();
     }
 

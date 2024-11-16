@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
@@ -18,7 +17,7 @@ public class PedidoItemEntity {
     @GeneratedValue(generator = "UUID")
     private UUID id;
 
-    private BigDecimal preco;
+    private double preco;
 
     private int quantidade;
 

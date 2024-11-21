@@ -15,12 +15,12 @@ public class AtualizarStatusPagamento {
         this.pedidoRepository = pedidoRepository;
     }
 
-    public Pedido execute(UUID id, StatusPagamento statusPagamento) {
+    public Pedido execute(UUID id, boolean pagamentoAprovado) {
         Pedido pedido = this.pedidoRepository.getById(id);
         if (pedido == null) {
             throw new EntityNotFoundException("Pedido não encontrado");
         }
-        pedido.setStatusPagamento(statusPagamento);
+        pedido.setStatusPagamento(pagamentoAprovado ? StatusPagamento.PAGO : StatusPagamento.NEGADO);
         return this.pedidoRepository.atualizarStatus(pedido);
     }
 

@@ -23,7 +23,7 @@ public class AtualizarStatusPagamentoController {
     @Operation(tags = "Pagamentos", summary = "Webhook de atualização do status do pagamento")
     public ResponseEntity<Object> atualizarStatusPagamento(@RequestBody AtualizarStatusPagamentoRequest request) {
         PedidoController pedidoController = new PedidoController(this.pedidoRepositoryInterace);
-        var pedido = pedidoController.atualizarStatusPagamento(request.id(), request.statusPagamento());
+        var pedido = pedidoController.atualizarStatusPagamento(request.id(), request.pagamentoAprovado());
         return new ResponseEntity<>(pedido, HttpStatus.OK);
     }
 

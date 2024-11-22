@@ -45,7 +45,7 @@ class AtualizarStatusPagamentoTest {
         when(this.pedidoRepositoryInterface.atualizarStatus(any(Pedido.class))).thenReturn(pedido);
 
         AtualizarStatusPagamento atualizarStatusPagamento = new AtualizarStatusPagamento(this.pedidoRepositoryInterface);
-        Pedido pedidoAtualizado = atualizarStatusPagamento.execute(pedido.getId(), StatusPagamento.PAGO);
+        Pedido pedidoAtualizado = atualizarStatusPagamento.execute(pedido.getId(), true);
         assertThat(pedidoAtualizado).isNotNull();
         assertThat(pedidoAtualizado.getStatusPagamento()).isEqualTo(StatusPagamento.PAGO);
         verify(this.pedidoRepositoryInterface, times(1)).getById(any(UUID.class));
@@ -60,7 +60,7 @@ class AtualizarStatusPagamentoTest {
         when(this.pedidoRepositoryInterface.getById(any(UUID.class))).thenReturn(null);
 
         AtualizarStatusPagamento atualizarStatusPagamento = new AtualizarStatusPagamento(this.pedidoRepositoryInterface);
-        assertThatThrownBy(() -> atualizarStatusPagamento.execute(pedido.getId(), StatusPagamento.PAGO))
+        assertThatThrownBy(() -> atualizarStatusPagamento.execute(pedido.getId(), true))
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessage("Pedido não encontrado");
         verify(this.pedidoRepositoryInterface, times(1)).getById(any(UUID.class));

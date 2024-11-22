@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class PedidoPresenter {
 
-    public static Object toObject(Pedido pedido) {
+    public static Map<String, Object> toObject(Pedido pedido) {
         Map<String, Object> presenter = new HashMap<>();
         presenter.put("id", pedido.getId());
         presenter.put("valor", pedido.getValor());

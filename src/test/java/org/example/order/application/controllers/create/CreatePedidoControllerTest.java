@@ -1,5 +1,6 @@
 package org.example.order.application.controllers.create;
 
+import org.example.order.adapters.services.RequestInterface;
 import org.example.order.core.applications.repositories.PedidoRepositoryInterface;
 import org.example.order.core.domain.Pedido;
 import org.example.order.core.domain.PedidoItem;
@@ -27,12 +28,15 @@ public class CreatePedidoControllerTest {
     @Mock
     private PedidoRepositoryInterface pedidoRepositoryInterface;
 
+    @Mock
+    private RequestInterface requestInterface;
+
     AutoCloseable openMocks;
 
     @BeforeEach
     void setUp() {
         openMocks = org.mockito.MockitoAnnotations.openMocks(this);
-        CreatePedidoController createPedidoController = new CreatePedidoController(this.pedidoRepositoryInterface);
+        CreatePedidoController createPedidoController = new CreatePedidoController(this.pedidoRepositoryInterface, this.requestInterface);
         this.mockMvc = MockMvcBuilders.standaloneSetup(createPedidoController).build();
     }
 

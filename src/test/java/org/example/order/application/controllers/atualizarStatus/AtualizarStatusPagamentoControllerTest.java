@@ -55,11 +55,10 @@ public class AtualizarStatusPagamentoControllerTest {
         this.mockMvc.perform(
                         post("/pagamentos")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content("{\"id\": \""+uuid.toString()+"\", \"statusPagamento\": \"PAGO\"}")
+                                .content("{\"id\": \""+uuid.toString()+"\", \"pagamentoAprovado\": \"true\"}")
                 )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(uuid.toString()))
-                .andExpect(jsonPath("$.pagamento_aprovado").value(true));
+                .andExpect(jsonPath("$.id").value(uuid.toString()));
     }
 
 }

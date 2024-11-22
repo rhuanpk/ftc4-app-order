@@ -3,6 +3,7 @@ package org.example.order.application.controllers.create;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.example.order.adapters.controllers.PedidoController;
+import org.example.order.adapters.services.RequestInterface;
 import org.example.order.application.controllers.create.requests.PedidoCreateItemRequest;
 import org.example.order.application.controllers.create.requests.PedidoCreateRequest;
 import org.example.order.core.applications.repositories.PedidoRepositoryInterface;
@@ -23,6 +24,7 @@ import java.util.*;
 public class CreatePedidoController {
 
     private final PedidoRepositoryInterface pedidoRepositoryInterace;
+    private final RequestInterface requestInterface;
 
     @PostMapping
     @Operation(tags = "Pedidos")
@@ -35,16 +37,11 @@ public class CreatePedidoController {
         CriarPedidoInput input = new CriarPedidoInput(request.clienteNome(), inputItens);
         Map<String, Object> response = pedidoController.criarPedido(input);
 
-//        RestTemplate restTemplate = new RestTemplate();
-//        String url = "http://localhost:8081/pedidos";
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//        Map<String, Object> jsonBody = new HashMap<>();
-//        jsonBody.put("uuid", response.get("id"));
-//        jsonBody.put("nomeCliente", response.get("nome_cliente"));
-//        jsonBody.put("valor", response.get("valor"));
-//        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(jsonBody, headers);
-//        restTemplate.postForEntity(url, requestEntity, String.class);
+        Map<String, Object> jsonBody = new HashMap<>();
+        jsonBody.put("uuid", response.get("id"));
+        jsonBody.put("nomeCliente", response.get("nome_cliente"));
+        jsonBody.put("valor", response.get("valor"));
+        this.requestInterface.post("pedidos", jsonBody);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

@@ -6,9 +6,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      MYSQL_HOST: ${MYSQL_HOST:-db}
-      MYSQL_PORT: ${MYSQL_PORT:-3306}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-app_order_db}
+      MYSQL_URI: ${MYSQL_URI:-app_order_db}
       MYSQL_USER: ${MYSQL_USER:-root}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
     networks:

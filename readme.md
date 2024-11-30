@@ -16,3 +16,10 @@ Se for necessário modificar a chamada via API para uma fila de processamento, b
 
 ```java
 public class RequestService implements RequestInterface
+```
+
+# Testes
+* Para rodar os testes, execute o comando `mvn test` na raiz do projeto.
+
+Cobertura de testes:
+![img.png](img.png)![img.png](img.png)

@@ -9,6 +9,7 @@ services:
       MYSQL_URI: ${MYSQL_URI:-app_order_db}
       MYSQL_USER: ${MYSQL_USER:-root}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
+      URL_API_PAYMENT: ${URL_API_PAYMENT:-http://ac70e2b2b1888443e83b8d172b5fab98-1031338167.us-east-1.elb.amazonaws.com:4000/}
     networks:
       - app-network
     depends_on:
